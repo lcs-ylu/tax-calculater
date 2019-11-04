@@ -26,7 +26,7 @@ class ViewController: UIViewController {
             return
         }
         guard let income = Double(totalIncome) else{
-            calculateTax.text = "type a number"
+            calculateTax.text = "type a double"
             return
         }
       
