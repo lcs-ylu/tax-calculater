@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var calculate: UIButton!
     @IBOutlet weak var calculateTax: UITextField!
-    var taxOwing = 100
+    var taxOwing:Double = 0.0
 
     
     override func viewDidLoad() {
@@ -33,13 +33,13 @@ class ViewController: UIViewController {
         
         switch income {
         case 0...47630 :
-            taxOwing = 1.15 * income
+            taxOwing = 0.15 * income
             
         case 47631...95259 :
-            taxOwing = 1.15 * 47630 + 0.205(income - 47630)
+            taxOwing = 0.15 * 47630 + 0.205*(income - 47630)
             
         case 95259...147667 :
-            taxOwing = 1.15 * 47630 + 0.205 * 47629 + 0.26(income - 95259)
+            taxOwing = 0.15 * 47630 + 0.205 * 47629 + 0.26*(income - 95259)
             
         default:
             return
