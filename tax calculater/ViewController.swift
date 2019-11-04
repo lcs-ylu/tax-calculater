@@ -15,31 +15,36 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var calculate: UIButton!
     @IBOutlet weak var calculateTax: UITextField!
-    
-    
-    let tax = calculateTax.text
+    var taxOwing = 100
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         guard var totalIncome = totalIncome.text else{
-        print("type a number")
             return
         }
-        switch calculate {
-        case 0...47630 :
-            tax = 1.15 * totalIncome
-            fallthrough
-        case 47631...95259 :
-            taxOwning = 1.15 * 47630 + 0.205(totalIncome - 47630)
-            fallthrough
-        case 95259...147667 :
-            taxOwning = 1.15 * 47630 + 0.205 * 47629 + 0.26(totalIncome - 95259)
-            fallthrough
-        default
+        guard let income = Double(totalIncome) else{
+            calculateTax.text = "type a number"
+            return
         }
+      
         
+        switch income {
+        case 0...47630 :
+            taxOwing = 1.15 * income
+            
+        case 47631...95259 :
+            taxOwing = 1.15 * 47630 + 0.205(income - 47630)
+            
+        case 95259...147667 :
+            taxOwing = 1.15 * 47630 + 0.205 * 47629 + 0.26(income - 95259)
+            
+        default:
+            return
+        }
+         calculateTax.text = "$\(taxOwing)"
         
         
         
